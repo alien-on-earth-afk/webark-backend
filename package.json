@@ -19,6 +19,7 @@
   "homepage": "https://github.com/alien-on-earth-afk/webark-backend#readme",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   }
 }
