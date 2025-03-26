@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/services', async (req, res) => {
   try {
-    const response = await fetch(`${process.env.FRONTEND_URL}/data/services.json`);
+    const response = await fetch(`https://web-fawn-nine.vercel.app/data/services.json`);
     const servicesData = await response.json();
     res.json(servicesData);
   } catch (error) {
