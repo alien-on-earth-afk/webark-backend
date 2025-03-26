@@ -62,19 +62,17 @@ app.get('/', (req, res) => {
   res.send('Server is running');
 });
 
-// Services endpoints
-app.get('/api/services', (req, res) => {
+app.get('/api/services', async (req, res) => {
   try {
-    const servicesData = readJsonFile('src/data/services.json');
-    if (!servicesData || !servicesData.services) {
-      return res.json({ services: [] });
-    }
-    res.json({ services: servicesData.services });
+    const response = await fetch(`${process.env.FRONTEND_URL}/data/services.json`);
+    const servicesData = await response.json();
+    res.json(servicesData);
   } catch (error) {
-    console.error('Error reading services:', error);
-    res.status(500).json({ error: 'Failed to fetch services' });
+    console.error('Error fetching services data:', error);
+    res.status(500).json({ error: 'Failed to fetch services data' });
   }
 });
+
 
 app.post('/api/services', (req, res) => {
   try {
